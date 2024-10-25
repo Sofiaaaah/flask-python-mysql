@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Configurações de metadados e inclusão do Tailwind CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem vindo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-teal-700 to-cyan-950">
+
+    <style>
+        @keyframes pulse-border {
+          0% {
+            border-color: rgb(23, 0, 156);
+          }
+          50% {
+            border-color: rgb(66, 0, 66);
+          }
+          100% {
+            border-color: rgb(221, 0, 48);
+          }
+        }
+      
+        .animate-border {
+          animation: pulse-border 4s infinite;
+        }
+
+        
+      </style>
+
+ 
+<body class=bg-gradient-to-r from-purple-500 to-pink-500 flex flex-col min-h-screen">
+    <!-- Seção superior do armazém -->
+    <div id="caixa" class="bg-neutral-400 w-max h-max mx-auto my-20 px-14 py-10 rounded-tr-[35px]  border-4  animate-border">
+        <!-- Saudação ao usuário -->
+        <h1 class="text-5xl text-center">Bem-vindo {{user['userName']}}</h1>
+        <!-- Botões de navegação -->
+        <div id="butaoArmazem" class="mt-10 flex justify-around w-1/2">
+            <!-- Exibe opções adicionais se o usuário for Gerente -->
+            {% if user['userFuction'] == 'Gerente' %}
+            <a href="/stock" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-md">Estoque</a>
+            <a href="/salesReport" class="bg-green-500 text-white font-bold py-2 px-4 rounded-md">Relatório de Vendas</a>
+            {% endif %}
+            <!-- Botão de logout -->
+            <a href="/logout" class="bg-red-500 text-white font-bold py-2 px-4 rounded-md">Sair</a>
+        </div>
+    </div>
+    
+    <!-- Seção inferior do armazém -->
+    <div id="inferiorArmazem" class="bg-white rounded-lg shadow-lg mx-auto my-10 p-5 flex flex-wrap justify-center">
+        <!-- Links para diferentes áreas do armazém -->
+        {% for i in range(1, 6) %}
+        <a href="/area/{{i}}" class="w-48 h-48 m-5 bg-gray-100 rounded-lg flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+            <div id="id{{i}}" class="text-center text-lg">
+                Área {{i}}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
